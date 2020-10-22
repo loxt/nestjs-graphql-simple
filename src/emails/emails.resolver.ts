@@ -34,6 +34,7 @@ export class EmailsResolver {
 
   @Mutation(() => Email)
   async removeEmail(@Args('email', { type: () => String }) email: string) {
-    return this.emailsService.remove(email);
+    await this.emailsService.remove(email);
+    return { email };
   }
 }
