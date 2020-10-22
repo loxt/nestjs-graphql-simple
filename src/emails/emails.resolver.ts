@@ -21,8 +21,8 @@ export class EmailsResolver {
   }
 
   @Query(() => Email, { name: 'email' })
-  async findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.emailsService.findOne(id);
+  async findOne(@Args('email', { type: () => String }) email: string) {
+    return this.emailsService.findOne(email);
   }
 
   @Mutation(() => Email)
@@ -33,7 +33,7 @@ export class EmailsResolver {
   }
 
   @Mutation(() => Email)
-  async removeEmail(@Args('id', { type: () => Int }) id: number) {
-    return this.emailsService.remove(id);
+  async removeEmail(@Args('email', { type: () => String }) email: string) {
+    return this.emailsService.remove(email);
   }
 }

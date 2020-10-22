@@ -24,15 +24,20 @@ export class EmailsService {
     return this.emailRepository.find();
   }
 
-  async findOne(id: number) {
-    return `This action returns a #${id} email`;
+  async findOne(email: string) {
+    return this.emailRepository.findOne({ email: email });
   }
 
-  async update(updateEmailInput: UpdateEmailInput) {
-    return 'This action updates a email';
+  async update({ email, name }: UpdateEmailInput) {
+    const updateEmail = await this.emailRepository.findOne({ email });
+
+    updateEmail.name = name;
+    await validateOrReject(updateEmail);
+
+    return this.emailRepository.save(updateEmail);
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} email`;
+  async remove(email: string) {
+    return this.emailRepository.delete({ email });
   }
 }
