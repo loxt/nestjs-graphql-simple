@@ -8,7 +8,6 @@ import { GraphQLModule } from '@nestjs/graphql';
     TypeOrmModule.forRoot({
       type: 'mongodb',
       url: 'mongodb://localhost/emails',
-      entities: [],
       synchronize: true,
       useUnifiedTopology: true,
       useNewUrlParser: true,

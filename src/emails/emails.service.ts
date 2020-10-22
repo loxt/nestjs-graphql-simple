@@ -16,16 +16,12 @@ export class EmailsService {
     const createEmail = new Email();
     Object.assign(createEmail, createEmailInput);
 
-    await Promise.all([
-      validateOrReject(createEmail),
-      this.emailRepository.save(createEmail),
-    ]);
-
-    return createEmail;
+    await validateOrReject(createEmail);
+    return this.emailRepository.save(createEmail);
   }
 
   async findAll() {
-    return `This action returns all emails`;
+    return this.emailRepository.find();
   }
 
   async findOne(id: number) {
